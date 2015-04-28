@@ -9,7 +9,9 @@ function! ge#doc#read()
     let b:strings = []
     let b:links = []
     let b:anchors = {}
-    let cmd = 'getool doc ' . expand('%')
+    let uri = expand('%')
+    let uri = substitute(uri, '\\', '/', 'g')  " needed on Windows
+    let cmd = 'getool doc ' . uri
     let out = split(system(cmd), "\n", 1)
 
     if v:shell_error
