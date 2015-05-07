@@ -11,6 +11,7 @@ augroup END
 command! -nargs=* -range -complete=customlist,ge#complete#complete GeDoc :call s:doc(<f-args>)
 
 function! s:doc(arg)
+  let path = ge#complete#resolve(a:arg)
   if &filetype != "godoc"
     let thiswin = winnr()
     exe "norm! \<C-W>b"
@@ -31,7 +32,7 @@ function! s:doc(arg)
       setl nonumber foldcolumn=0
     endif
   endif
-  silent execute 'edit godoc://' . ge#complete#resolve(a:arg)
+  silent execute 'edit godoc://' . path
 endfunction
 
 " vim:ts=4:sw=4:et
