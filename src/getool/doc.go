@@ -111,7 +111,9 @@ func (p *docPrinter) execute(out io.Writer) {
 		p.buf.WriteString("\"\n\n")
 		p.printText(p.dpkg.Doc)
 		p.printExamples("")
+	}
 
+	if p.dpkg != nil {
 		p.buf.WriteString("FILES\n")
 		p.printFiles(p.bpkg.GoFiles, p.bpkg.CgoFiles)
 		p.printFiles(p.bpkg.TestGoFiles, p.bpkg.XTestGoFiles)
